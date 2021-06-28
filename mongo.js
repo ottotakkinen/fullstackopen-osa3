@@ -29,7 +29,7 @@ if (process.argv.length === 5) {
     number: process.argv[4],
   });
 
-  person.save().then((response) => {
+  person.save().then(() => {
     console.log('note saved');
     mongoose.connection.close();
   });

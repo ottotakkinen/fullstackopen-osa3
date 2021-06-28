@@ -11,7 +11,7 @@ app.use(express.static('build'));
 app.use(cors());
 app.use(express.json());
 
-morgan.token('body-content', function (req, res) {
+morgan.token('body-content', function (req) {
   return JSON.stringify(req.body);
 });
 
@@ -64,9 +64,9 @@ app.get('/api', (req, res, next) => {
   Person.find({})
     .then((persons) => {
       res.send(`
-    <p>Phonebook has info for ${persons.length} people.</p>
-    <p>${date}</p>
-    `);
+        <p>Phonebook has info for ${persons.length} people.</p>
+        <p>${date}</p>
+      `);
     })
     .catch((err) => next(err));
 });
