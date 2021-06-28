@@ -28,13 +28,12 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' });
   } else if (error.name === 'ValidationError') {
+    console.log('sent a validation error');
     return response.status(400).json({ error: error.message });
   }
 
   next(error);
 };
-
-app.use(errorHandler);
 
 let persons = [
   {
@@ -65,9 +64,9 @@ app.get('/api', (req, res, next) => {
   Person.find({})
     .then((persons) => {
       res.send(`
-        <p>Phonebook has info for ${persons.length} people.</p>
-        <p>${date}</p>
-      `);
+    <p>Phonebook has info for ${persons.length} people.</p>
+    <p>${date}</p>
+    `);
     })
     .catch((err) => next(err));
 });
@@ -165,6 +164,8 @@ app.put('/api/persons/:id', (req, res, next) => {
     })
     .catch((err) => next(err));
 });
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
