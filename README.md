@@ -1,3 +1,4 @@
 # fullstackopen-osa3
+Part 3 of the Full Stack Open 2021 course in its own repository.
 
-osa3 omassa repossaan ja deployattuna herokuun
+This is because the part required deployment to Heroku.
